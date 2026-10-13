@@ -1,5 +1,6 @@
 import { Container } from 'react-bootstrap'
 import Navbar from './components/Navbar'
+import Contador from './components/Contador'
 
 function App() {
   return (
@@ -9,10 +10,12 @@ function App() {
       <main id="inicio">
         <Container className="py-5">
           <h1>Bienvenido a Pilar Tecno</h1>
+          
           <p>
             Descubrí eventos, conectá con personas y encontrá
             nuevas experiencias.
           </p>
+          <Contador />
         </Container>
 
         <section id="eventos">
