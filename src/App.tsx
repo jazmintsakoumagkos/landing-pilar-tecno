@@ -1,9 +1,10 @@
 
 import { useState } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Modal, Button } from 'react-bootstrap'
 import Navbar from './components/Navbar'
 import Contador from './components/Contador'
 import EventoCard, { type Evento } from './components/EventoCard'
+
 
 const eventos: Evento[] = [
   {
@@ -45,7 +46,7 @@ function App() {
             nuevas experiencias.
           </p>
 
-          <Contador />
+          <Contador titulo="Contador de visitas" />
         </Container>
 
         <section id="eventos" className="bg-light">
@@ -63,11 +64,38 @@ function App() {
               ))}
             </Row>
 
-            {eventoSeleccionado && (
-              <p className="mt-4" role="status">
-                Seleccionaste: {eventoSeleccionado.nombre}
-              </p>
-            )}
+            
+<Modal
+  show={eventoSeleccionado !== null}
+  onHide={() => setEventoSeleccionado(null)}
+  centered
+>
+  <Modal.Header closeButton>
+    <Modal.Title>
+      {eventoSeleccionado?.nombre}
+    </Modal.Title>
+  </Modal.Header>
+
+  <Modal.Body>
+    <p>{eventoSeleccionado?.descripcion}</p>
+    <p>
+      <strong>Fecha:</strong> {eventoSeleccionado?.fecha}
+    </p>
+    <p>
+      <strong>Lugar:</strong> {eventoSeleccionado?.lugar}
+    </p>
+  </Modal.Body>
+
+  <Modal.Footer>
+    <Button
+      variant="secondary"
+      onClick={() => setEventoSeleccionado(null)}
+    >
+      Cerrar
+    </Button>
+  </Modal.Footer>
+</Modal>
+
           </Container>
         </section>
 
